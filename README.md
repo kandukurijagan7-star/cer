@@ -1,37 +1,72 @@
-# SIMATS - SYNORA '26 Certificate Sharing Portal & Registration System
+# CertiFlow — Enterprise Digital Certificate Platform
 
-An advanced, high-capacity web portal for **SYNORA '26** (National Level Symposium conducted by the Department of Nanobiomaterials, SIMATS Engineering). 
-
-This portal features fast, parallel certificate rendering, instant email dispatching via Google Apps Script, an executive BI analytics dashboard, dynamic status tracking, and Netlify deployment support.
+> **Official Certificate Issuance, Distribution & Verification Platform for SIMATS Engineering**  
+> Built for **SYNORA '26 National Technical Symposium** & Enterprise Multi-Event Management.
 
 ---
 
 ## 🌟 Key Features
 
-* **Instant Parallel PDF Generation**: Renders high-resolution vector PDF certificates in parallel using `jsPDF`.
-* **1-Click & Batch Email Dispatcher**: Dispatches certificates directly to team leaders' emails via Google Apps Script with auto-retry and concurrency chunking for 150+ teams.
-* **Smart Skip Protection**: Automatically skips teams that have already received certificates (`status === 'Emailed'`).
-* **Role-Based Access Control**: Restricts certificate preview, ZIP downloads, and mail dispatch to authenticated organizers while giving participants a clean registration confirmation summary.
-* **Real-Time Status Synchronization**: Updates local database, UI badges, and Google Sheets Column H to `Emailed` instantly.
-* **Certificate Authenticator**: Anyone can verify certificate authenticity by entering a unique Verification ID (e.g. `SYN26-X8F9A2`).
-* **Executive BI Analytics Dashboard**: Features live progress bars, metrics cards, and an interactive HTML5 Canvas Doughnut Chart displaying delivery ratios and institutional statistics.
-* **Cosmic UI & Delight Effects**: Floating gold particle constellation canvas background (`#particle-canvas`) and metallic confetti celebration bursts upon registration.
+* **Multi-Tenant & Multi-Event Architecture**: Manage organizations, symposiums, hackathons, and workshops with custom branding and dates.
+* **Visual Drag-and-Drop Template Builder**: Live HTML5 Canvas coordinate designer with dynamic tags (`{{recipient_name}}`, `{{team_name}}`, `{{certificate_id}}`, etc.), layer management, and version history.
+* **Deterministic Server & Client PDF Engine**: Generates standard vector A4 landscape certificates with embedded high-contrast QR codes and SHA-256 document integrity checksums.
+* **Public Cryptographic Verification Portal (`/verify/:id`)**: Mobile-first verification endpoint with QR code scanner, revocation detection, audit scan logging, and 1-click LinkedIn/WhatsApp sharing.
+* **Smart Bulk Import & Legacy Sheets Adapter**: Import CSV, Excel, or synchronize directly from existing Google Apps Script / Google Sheets endpoints without data loss.
+* **Queue-Based Email Campaign Engine**: Asynchronous batch email dispatching with PDF attachments, delivery status tracking (`QUEUED`, `SENT`, `DELIVERED`, `FAILED`), and retry support.
+* **Attendee Certificate Wallet PWA**: Installable digital credential wallet for students and participants.
+* **Role-Based Access Control (RBAC)**: Server-side enforced permissions for 8 granular roles (`SUPER_ADMIN` to `PARTICIPANT`).
+* **Executive BI Analytics Dashboard**: Real-time KPI metrics, delivery success rates, institutional distribution rankings, and exportable audit logs.
 
 ---
 
-## 🛠️ Project Structure
+## 🚀 Quickstart Guide
 
+### 1. Installation & Setup
+```bash
+# Clone repository and enter directory
+cd "certificate sharing website"
+
+# Install dependencies
+npm install
+
+# Push database schema & generate Prisma Client
+npx prisma db push
+
+# Seed demo dataset (SIMATS Engineering, SYNORA '26, certificates)
+node scripts/seed.js
 ```
-├── index.html        # Single-Page Application (Frontend, Dashboard, PDF Renderer, UI)
-├── code.gs           # Google Apps Script Backend (Web App API, Google Sheets & MailApp)
-├── netlify.toml      # Netlify deployment configuration & security headers
-├── manifest.json     # PWA Web App Manifest
-└── template.png      # High-resolution certificate background template
+
+### 2. Run Automated Test Suite
+```bash
+npm test
 ```
+
+### 3. Launch Development Server
+```bash
+npm run dev
+```
+Open `http://localhost:3000` in your web browser.
 
 ---
 
-## 🚀 Live Netlify Deployment
+## 🔐 Pre-Configured Administrator Login
+- **Email**: `admin@certiflow.io`
+- **Password**: `synora2026`
+- **Role**: `SUPER_ADMIN`
 
-The portal is configured for instant Netlify deployment with SPA routing and asset caching headers.
-* **Netlify Config**: `netlify.toml`
+---
+
+## 📁 Project Architecture & Documentation
+
+- [System Architecture Specification](docs/ARCHITECTURE.md)
+- [REST API v1 Reference](docs/API.md)
+- [Database Schema & ERD](docs/DATABASE.md)
+- [Security & RBAC Model](docs/SECURITY.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [Legacy Google Sheets Migration](docs/MIGRATION.md)
+
+---
+
+## 🏛️ Issuer Information
+**Department of Nanobiomaterials**  
+SIMATS Engineering, Saveetha Institute of Medical and Technical Sciences (SIMATS), Chennai, Tamil Nadu, India.
